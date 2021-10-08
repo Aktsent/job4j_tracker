@@ -1,2 +1,2 @@
 # job4j_tracker
-"Проект содержит решения блока "ООП" курса Job4j."
+[![Build Status](https://app.travis-ci.com/Aktsent/job4j_tracker.svg?branch=master)](https://app.travis-ci.com/Aktsent/job4j_tracker)

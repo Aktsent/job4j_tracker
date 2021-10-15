@@ -1,12 +1,13 @@
 package ru.job4j.tracker.oop;
 
-import junit.framework.TestCase;
-
 import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;
 
-public class TriangleTest extends TestCase {
+import org.junit.Test;
 
+public class TriangleTest {
+
+    @Test
     public void area() {
         Point a = new Point(0, 0);
         Point b = new Point(4, 0);

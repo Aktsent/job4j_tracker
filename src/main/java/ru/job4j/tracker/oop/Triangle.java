@@ -14,11 +14,11 @@ public class Triangle {
     }
 
     public double semiPerimetr(double a, double b, double c) {
-        return -1;
+        return (a + b + c) / 2;
     }
 
     public boolean exist(double ab, double ac, double bc) {
-        return false;
+        return ab + ac > bc && ab + bc > ac && ac + bc > ab;
     }
 
     public double area() {
@@ -28,8 +28,7 @@ public class Triangle {
         double bc = second.distance(third);
         if (this.exist(ab, ac, bc)) {
             double p = semiPerimetr(ab, ac, bc);
-            double s = sqrt(p * (p - ab) * (p - ac) * (p - bc));
-            rsl = -1;
+            rsl = sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;
     }

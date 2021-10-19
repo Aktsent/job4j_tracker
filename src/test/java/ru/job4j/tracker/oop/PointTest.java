@@ -1,12 +1,10 @@
 package ru.job4j.tracker.oop;
 
-import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.closeTo;
-import static org.junit.Assert.assertThat;
+import static junit.framework.Assert.assertEquals;
 
-public class PointTest extends TestCase {
+public class PointTest {
 
     @Test
     public void testDistance() {
@@ -18,10 +16,9 @@ public class PointTest extends TestCase {
 
     @Test
     public void testDistance3d() {
-        Point a = new Point(0, 0);
-        Point b = new Point(0, 2);
-        Point c = new Point(0, 0);
-        double dist = a.distance3d(c);
-        assertEquals(0, dist, 0.01);
+        Point a = new Point(0, 0, 5);
+        Point b = new Point(0, 2, 6);
+        double dist = a.distance3d(b);
+        assertEquals(2.23, dist, 0.01);
     }
 }

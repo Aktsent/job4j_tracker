@@ -1,11 +1,10 @@
 package ru.job4j.tracker.oop;
 
 public class Programmer extends Engineer {
-    private Engineer programm;
 
-    public Engineer getProgramm(Engineer programm) {
+    private String programm;
+
+    public Programmer(String programm) {
         this.programm = programm;
-        return programm;
     }
-
 }

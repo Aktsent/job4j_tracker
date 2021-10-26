@@ -6,7 +6,6 @@ public class Student {
     private String date;
 
     public String getInitials() {
-        System.out.println(initials);
         return initials;
     }
 
@@ -15,7 +14,6 @@ public class Student {
     }
 
     public String getGroup() {
-        System.out.println(group);
         return group;
     }
 
@@ -24,7 +22,6 @@ public class Student {
     }
 
     public String getDate() {
-        System.out.println(date);
         return date;
     }
 

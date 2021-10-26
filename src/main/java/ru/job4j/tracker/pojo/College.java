@@ -5,10 +5,10 @@ public class College {
     public static void main(String[] args) {
         Student student = new Student();
         student.setInitials("Фамилия Имя Отчество");
-        student.getInitials();
+        System.out.println(student.getInitials());
         student.setGroup("В43");
-        student.getGroup();
-        student.setDate("21.21.21");
-        student.getDate();
+        System.out.println(student.getGroup());
+        student.setDate("21.12.21");
+        System.out.println(student.getDate());
     }
 }

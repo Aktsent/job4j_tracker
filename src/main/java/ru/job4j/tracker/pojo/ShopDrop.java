@@ -2,20 +2,10 @@ package ru.job4j.tracker.pojo;
 
 public class ShopDrop {
     public static Product[] delete(Product[] products, int index) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[index] == null) {
-                ShopDrop.swap(products, i, index);
-            } else {
-                products[index] = null;
-            }
+        for (int i = index; i < products.length - 1; i++) {
+            products[i] = products[i + 1];
         }
-        return products;
-    }
-
-    public static Product[] swap(Product[] products, int p, int n) {
-        Product temp = products[p];
-        products[p] = products[n];
-        products[n] = temp;
+        products[products.length - 1] = null;
         return products;
     }
 }

@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class MagicBall {
     public static void main(String[] args) {
-        System.out.print("Я великий Оракул. Что ты хочешь узнать? ");
-        System.out.println();
+        System.out.println("Я великий Оракул. Что ты хочешь узнать? ");
         Scanner input = new Scanner(System.in);
-        String question = input.nextLine();
-        System.out.println(question);
+        input.nextLine();
         int answer = new Random().nextInt(3);
         if (answer == 0) {
             System.out.println("Да");

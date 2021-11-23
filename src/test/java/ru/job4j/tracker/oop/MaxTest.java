@@ -2,6 +2,7 @@ package ru.job4j.tracker.oop;
 
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.oop.Max;
 
 public class MaxTest {
 

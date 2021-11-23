@@ -1,6 +1,7 @@
 package ru.job4j.tracker.oop;
 
 import org.junit.Test;
+import ru.job4j.oop.Point;
 
 import static junit.framework.Assert.assertEquals;
 

@@ -3,6 +3,7 @@ package ru.job4j.tracker.pojo;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+import ru.job4j.pojo.License;
 
 public class LicenseTest {
 

@@ -4,15 +4,12 @@ public class Bus implements Transport {
 
     @Override
     public void drive() {
-        String driver = "Ivanov";
-        System.out.println(driver);
+        System.out.println();
     }
 
     @Override
     public void passenger(int number) {
-        int seat = 20;
-        int free = number / seat;
-        System.out.println(free);
+        System.out.println(number);
     }
 
     @Override

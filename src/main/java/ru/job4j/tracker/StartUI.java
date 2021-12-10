@@ -28,8 +28,9 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(output), new DeleteIthem(), new EditIthem(),
-                new FindIthemId(), new FindIthemName(), new ShowIthem(), new ExitAction()};
+        UserAction[] actions = {new CreateAction(output), new DeleteIthem(output),
+                new EditIthem(output), new FindIthemId(output), new FindIthemName(output),
+                new ShowIthem(output), new ExitAction()};
         new StartUI(output).init(input, tracker, actions);
     }
 }

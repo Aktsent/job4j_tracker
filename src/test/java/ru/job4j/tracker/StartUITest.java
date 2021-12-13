@@ -40,4 +40,30 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
+
+    @Test
+    public void whenFindIthemId() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("one"));
+        Item find = tracker.findById(one.getId());
+        Input in = new StubInput(new String[] {"0", String.valueOf(find), "1"});
+        UserAction[] actions = new UserAction[] {
+                new FindIthemId(out),
+                new ExitAction()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu" + ln
+                + "0. Find item by id" + ln
+                + "1. Exit Program" + ln
+                + "=== Find item by id ===" + ln
+                + find + ln
+                + "Menu" + ln
+                + "0. Find item by id" + ln
+                + "1. Exit Program" + ln
+                + "=== Exit Program ===" + ln
+        ));
+    }
 }

@@ -71,8 +71,7 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("one"));
-        Item[] find = tracker.findByName(one.getName());
-        Input in = new StubInput(new String[] {"0", String.valueOf(find.length), "1"});
+        Input in = new StubInput(new String[] {"0", one.getName(), "1"});
         UserAction[] actions = new UserAction[] {
                 new FindIthemName(out),
                 new ExitAction()
@@ -84,7 +83,7 @@ public class StartUITest {
                         + "0. Find items by name" + ln
                         + "1. Exit Program" + ln
                         + "=== Find items by name ===" + ln
-                        + find + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Find items by name" + ln
                         + "1. Exit Program" + ln
@@ -95,8 +94,8 @@ public class StartUITest {
     public void whenShowIthem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        Item[] show = tracker.findAll();
-        Input in = new StubInput(new String[] {"0", String.valueOf(show.length), "1"});
+        Item one = tracker.add(new Item("one"));
+        Input in = new StubInput(new String[] {"0", "1"});
         UserAction[] actions = new UserAction[] {
                 new ShowIthem(out),
                 new ExitAction()};
@@ -107,7 +106,7 @@ public class StartUITest {
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
                         + "=== Show all items ===" + ln
-                        + show.length + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln

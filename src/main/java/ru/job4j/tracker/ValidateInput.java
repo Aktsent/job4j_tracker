@@ -29,21 +29,4 @@ public class ValidateInput implements Input {
         } while (invalid);
         return value;
     }
-
-    private boolean isNumber(String value) {
-        boolean rsl = true;
-        char[] check = value.toCharArray();
-        try {
-            for (char num : check) {
-                if (num < 48 || num > 57) {
-                    rsl = false;
-                    break;
-                }
-            }
-        } catch (NumberFormatException nfe) {
-            System.out.println("Please enter validate data again.");
-        }
-
-        return rsl;
-    }
 }

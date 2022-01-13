@@ -20,11 +20,10 @@ public class ValidateInput implements Input {
         int value = -1;
         do {
             try {
-                String rsl = in.askStr(question);
-                value = Integer.parseInt(rsl);
+                value = in.askInt(question);
                 invalid = false;
             } catch (NumberFormatException nfe) {
-                System.out.println("Please enter validate data again.");
+                out.println("Please enter validate data again.");
             }
         } while (invalid);
         return value;

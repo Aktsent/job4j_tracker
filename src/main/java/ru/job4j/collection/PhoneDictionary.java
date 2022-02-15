@@ -11,6 +11,7 @@ public class PhoneDictionary {
 
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
+        result.contains(key);
         return result;
     }
 }

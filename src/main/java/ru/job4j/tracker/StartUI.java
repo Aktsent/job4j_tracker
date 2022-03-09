@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class StartUI {
     private final Output out;
 
@@ -7,34 +9,37 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, List<Item> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
-            if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+            if (select < 0 || select >= actions.size()) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.size()));
                 continue;
             }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(List<Item> actions) {
         out.println("Menu:");
-        for (int i = 0; i < actions.length; i++) {
-            out.println(i + ". " + actions[i].name());
+        for (Item item : actions) {
+            out.println(item + ". " + actions);
         }
     }
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
-        Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(output), new DeleteIthem(output),
-                new EditIthem(output), new FindIthemId(output), new FindIthemName(output),
-                new ShowIthem(output), new ExitAction()};
-        new StartUI(output).init(input, tracker, actions);
+        List<UserAction> actions = List.of(
+                new CreateAction(output),
+                new DeleteIthem(output),
+                new EditIthem(output),
+                new FindIthemId(output),
+                new FindIthemName(output),
+                new ShowIthem(output),
+                new ExitAction()
+        );
     }
 }

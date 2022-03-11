@@ -21,7 +21,7 @@ public final class SingleTracker {
         return tracker.add(item);
     }
 
-    public List<Item> findById(int id) {
+    public Item findById(int id) {
         return tracker.findById(id);
     }
 
@@ -33,11 +33,11 @@ public final class SingleTracker {
         return tracker.findByName(key);
     }
 
-    public List<Item> replace(int id, Item item) {
+    public boolean replace(int id, Item item) {
         return tracker.replace(id, item);
     }
 
-    public List<Item> delete(int id) {
+    public boolean delete(int id) {
         return tracker.delete(id);
     }
 }

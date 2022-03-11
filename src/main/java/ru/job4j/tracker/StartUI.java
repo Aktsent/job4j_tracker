@@ -9,7 +9,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, List<Item> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -23,15 +23,17 @@ public class StartUI {
         }
     }
 
-    private void showMenu(List<Item> actions) {
+    private void showMenu(List<UserAction> actions) {
         out.println("Menu:");
-        for (Item item : actions) {
-            out.println(item + ". " + actions);
+        for (int i = 0; i < actions.size(); i++) {
+            out.println(i + ". " + actions.get(i).name());
         }
     }
 
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
+        Input input = new ValidateInput(output, new ConsoleInput());
+        Tracker tracker = new Tracker();
         List<UserAction> actions = List.of(
                 new CreateAction(output),
                 new DeleteIthem(output),
@@ -41,5 +43,6 @@ public class StartUI {
                 new ShowIthem(output),
                 new ExitAction()
         );
+        new StartUI(output).init(input, tracker, actions);
     }
 }

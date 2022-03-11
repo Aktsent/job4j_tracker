@@ -29,29 +29,38 @@ public class Tracker {
         return rsl;
     }
 
-    public List<Item> findById(int id) {
-        return indexOf(id);
+    public Item findById(int id) {
+        int i = indexOf(id);
+        return i != -1 ? items.get(i) : null;
     }
 
-    private List<Item> indexOf(int id) {
-        List<Item> rsl = new ArrayList<>();
-        for (Item item : items) {
-            if (item.getId() == id) {
-                rsl.add(item);
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                rsl = i;
+                break;
             }
         }
         return rsl;
     }
 
-    public List<Item> replace(int id, Item item) {
-        List<Item> rsl = indexOf(id);
-        rsl.set(id, item);
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
+            item.setId(id);
+            items.set(index, item);
+        }
         return rsl;
     }
 
-    public List<Item> delete(int id) {
-        List<Item> rsl = indexOf(id);
-        rsl.remove(id);
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        boolean rsl = index != -1;
+        if (rsl) {
+            items.remove(index);
+        }
         return rsl;
     }
 }

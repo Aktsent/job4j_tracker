@@ -46,7 +46,8 @@ public class BankService {
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
         Account account = findByRequisite(srcPassport, srcRequisite);
-        if (srcRequisite != null && destRequisite != null) {
+        Account account1 = findByRequisite(destPassport, destRequisite);
+        if (account1 != null && account != null) {
 
             rsl = true;
         }

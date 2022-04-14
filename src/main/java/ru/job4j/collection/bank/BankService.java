@@ -22,7 +22,7 @@ public class BankService {
 
     public User findByPassport(String passport) {
             for (User user : users.keySet()) {
-                if (user.getPassport().contains(passport)) {
+                if (user.getPassport().equals(passport)) {
                     return user;
                 }
             }
@@ -34,7 +34,7 @@ public class BankService {
         if (user != null) {
             List<Account> acc = users.get(user);
             for (Account account : acc) {
-                if (account.getRequisite().contains(requisite)) {
+                if (account.getRequisite().equals(requisite)) {
                     return account;
                 }
             }
@@ -49,6 +49,7 @@ public class BankService {
         Account account1 = findByRequisite(destPassport, destRequisite);
         if (account1 != null && account != null) {
             if (account.getBalance() >= amount) {
+                account.setBalance(account.getBalance() - amount);
                 account1.setBalance(account1.getBalance() + amount);
                 rsl = true;
             }

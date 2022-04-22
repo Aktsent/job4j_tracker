@@ -7,15 +7,15 @@ import java.util.List;
 public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
-        char[] char1 = new char[left.length()];
-        char[] char2 = new char[right.length()];
         for (int i = 0; i < left.length(); i++) {
             for (int j = 0; j < right.length(); j++) {
-                char1[i] = left.charAt(i);
-                char2[j] = right.charAt(j);
-                Character.compare(char1[i], char2[j]);
+                Math.min(left.length(), right.length());
+                int rsl = Character.compare(left.charAt(i), right.charAt(j));
+                if (rsl != 0) {
+                    return rsl;
+                }
             }
         }
-        return 0;
+        return Integer.compare(left.length(), right.length());
     }
 }

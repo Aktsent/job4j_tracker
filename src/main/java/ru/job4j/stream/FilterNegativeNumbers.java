@@ -8,8 +8,7 @@ public class FilterNegativeNumbers {
 
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(3, 6, -7);
-        List<Integer> positive = numbers.stream().filter(num ->
-                num > 0).collect(Collectors.toList());
+        List<Integer> positive = numbers.stream().filter(n -> n > 0).collect(Collectors.toList());
         positive.forEach(System.out::println);
     }
 }

@@ -21,4 +21,5 @@ public class RefMethod {
             System.out.println(value);
         }
     }
-}
+}   /* В данном примере упращение лямбды происходит через вызов
+    классом RefMethod метода cutOut */

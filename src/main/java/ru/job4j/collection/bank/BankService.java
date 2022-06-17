@@ -29,9 +29,9 @@ public class BankService {
      */
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            List<Account> acc = users.get(user);
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        if (user.isPresent()) {
+            List<Account> acc = users.get(user.get());
             if (!acc.contains(account)) {
                 acc.add(account);
             }
@@ -60,16 +60,12 @@ public class BankService {
      * @return возвращает найденый аккаунт по реквизитам или null если аккаунт не найден
      */
 
-    public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            return users.get(user)
-                    .stream()
-                    .filter(acc -> acc.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
-        }
-         return null;
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        return user.map(value -> users.get(value)
+                .stream()
+                .filter(acc -> acc.getRequisite().equals(requisite))
+                .findFirst()).orElse(null);
     }
 
     /**
@@ -85,9 +81,9 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        Account account = findByRequisite(srcPassport, srcRequisite);
-        Account account1 = findByRequisite(destPassport, destRequisite);
-        if (account1 != null && account != null) {
+        Optional<Account> account = findByRequisite(srcPassport, srcRequisite);
+        Optional<Account> account1 = findByRequisite(destPassport, destRequisite);
+        if (account1.isPresent() && account.isPresent()) {
             if (account.getBalance() >= amount) {
                 account.setBalance(account.getBalance() - amount);
                 account1.setBalance(account1.getBalance() + amount);

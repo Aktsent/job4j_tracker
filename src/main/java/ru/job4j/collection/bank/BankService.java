@@ -29,7 +29,7 @@ public class BankService {
      */
 
     public void addAccount(String passport, Account account) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
+        Optional<User> user = findByPassport(passport);
         if (user.isPresent()) {
             List<Account> acc = users.get(user.get());
             if (!acc.contains(account)) {
@@ -44,12 +44,11 @@ public class BankService {
      * @return возвращает найденного пользователя или null если он не найден
      */
 
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet()
                 .stream()
                 .filter(user -> user.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     /**
@@ -61,11 +60,11 @@ public class BankService {
      */
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<User> user = Optional.ofNullable(findByPassport(passport));
-        return user.map(value -> users.get(value)
+        Optional<User> user = findByPassport(passport);
+        return user.flatMap(value -> users.get(value)
                 .stream()
                 .filter(acc -> acc.getRequisite().equals(requisite))
-                .findFirst()).orElse(null);
+                .findFirst());
     }
 
     /**
@@ -84,9 +83,9 @@ public class BankService {
         Optional<Account> account = findByRequisite(srcPassport, srcRequisite);
         Optional<Account> account1 = findByRequisite(destPassport, destRequisite);
         if (account1.isPresent() && account.isPresent()) {
-            if (account.getBalance() >= amount) {
-                account.setBalance(account.getBalance() - amount);
-                account1.setBalance(account1.getBalance() + amount);
+            if (account.get().getBalance() >= amount) {
+                account.get().setBalance(account.get().getBalance() - amount);
+                account1.get().setBalance(account1.get().getBalance() + amount);
                 rsl = true;
             }
         }
